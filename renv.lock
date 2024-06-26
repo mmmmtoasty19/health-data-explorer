@@ -191,6 +191,13 @@
       ],
       "Hash": "d94049c1d9446b0abb413fde9e82a505"
     },
+    "brew": {
+      "Package": "brew",
+      "Version": "1.0-10",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "8f4a384e19dccd8c65356dc096847b76"
+    },
     "brio": {
       "Package": "brio",
       "Version": "1.1.5",
@@ -285,6 +292,13 @@
         "R"
       ],
       "Hash": "c089a619a7fae175d149d89164f8c7d8"
+    },
+    "collections": {
+      "Package": "collections",
+      "Version": "0.3.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "90a0eda114ab0bef170ddbf5ef0cd93f"
     },
     "commonmark": {
       "Package": "commonmark",
@@ -601,6 +615,30 @@
         "yaml"
       ],
       "Hash": "6e008ab1d696a5283c79765fa7b56b47"
+    },
+    "languageserver": {
+      "Package": "languageserver",
+      "Version": "0.3.16",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "callr",
+        "collections",
+        "fs",
+        "jsonlite",
+        "lintr",
+        "parallel",
+        "roxygen2",
+        "stringi",
+        "styler",
+        "tools",
+        "utils",
+        "xml2",
+        "xmlparsedata"
+      ],
+      "Hash": "f8901f44aedb6d7e7d03b5533986bd97"
     },
     "later": {
       "Package": "later",
@@ -933,6 +971,32 @@
       ],
       "Hash": "42548638fae05fd9a9b5f3f437fbbbe2"
     },
+    "roxygen2": {
+      "Package": "roxygen2",
+      "Version": "7.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "brew",
+        "cli",
+        "commonmark",
+        "cpp11",
+        "desc",
+        "knitr",
+        "methods",
+        "pkgload",
+        "purrr",
+        "rlang",
+        "stringi",
+        "stringr",
+        "utils",
+        "withr",
+        "xml2"
+      ],
+      "Hash": "c25fe7b2d8cba73d1b63c947bf7afdb9"
+    },
     "rprojroot": {
       "Package": "rprojroot",
       "Version": "2.0.4",
@@ -1007,6 +1071,36 @@
       ],
       "Hash": "5f5a7629f956619d519205ec475fe647"
     },
+    "stringi": {
+      "Package": "stringi",
+      "Version": "1.8.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "stats",
+        "tools",
+        "utils"
+      ],
+      "Hash": "39e1144fd75428983dc3f63aa53dfa91"
+    },
+    "stringr": {
+      "Package": "stringr",
+      "Version": "1.5.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cli",
+        "glue",
+        "lifecycle",
+        "magrittr",
+        "rlang",
+        "stringi",
+        "vctrs"
+      ],
+      "Hash": "960e2ae9e09656611e0b8214ad543207"
+    },
     "styler": {
       "Package": "styler",
       "Version": "1.10.3",
@@ -1080,6 +1174,29 @@
         "vctrs"
       ],
       "Hash": "a84e2cc86d07289b3b6f5069df7a004c"
+    },
+    "tidyr": {
+      "Package": "tidyr",
+      "Version": "1.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cli",
+        "cpp11",
+        "dplyr",
+        "glue",
+        "lifecycle",
+        "magrittr",
+        "purrr",
+        "rlang",
+        "stringr",
+        "tibble",
+        "tidyselect",
+        "utils",
+        "vctrs"
+      ],
+      "Hash": "915fb7ce036c22a6a33b5a8adb712eb1"
     },
     "tidyselect": {
       "Package": "tidyselect",
