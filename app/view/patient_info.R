@@ -10,7 +10,7 @@ box::use(
 ui <- function(id) {
   ns <- NS(id)
   shiny::verbatimTextOutput(ns("value"))
-  renderUI(ns("pt_demo"))
+  uiOutput(ns("pt_demo"))
 
 }
 
@@ -20,7 +20,7 @@ server <- function(id, patient_id) {
     output$value <- shiny::renderPrint(patient_id())
 
     output$pt_demo  <- renderUI({
-      "It Worked"
+      shiny::h3("It Worked")
     })
 
   })
