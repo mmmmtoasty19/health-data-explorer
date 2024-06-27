@@ -36,10 +36,6 @@ get_patient_data  <- function(columns, table, ID) {
 }
 
 
-# ID  <- "1c60a5da-1843-1978-d31a-ee5c060a43d2"
-# columns  <- list("FIRST", "LAST")
-# table  <- "patients"
 
-# test  <- get_patient_data(columns, table, ID)
 
 # tidyr::pivot_longer(test, tidyselect::everything())
