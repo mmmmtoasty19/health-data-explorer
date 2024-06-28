@@ -5,7 +5,7 @@ box::use(
 
 box::use(
   app/view/patient_info,
-  app/view/patient_select
+  app/view/patient_select,
 )
 
 #' @export

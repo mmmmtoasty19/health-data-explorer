@@ -24,18 +24,9 @@ get_patient_data  <- function(columns, table, ID) {
     RSQLite$SQLite(),
     here("app", "synthea.sqlite")
   )
-  if (is.list(columns)) {
-    query <- glue_sql("SELECT {`columns`*} FROM {`table`} WHERE Id = {ID}", .con = con)
-  } else {
-    query <- glue_sql("SELECT * FROM {`table`} WHERE Id = {ID}", .con = con)
-  }
-
+  query <- glue_sql("SELECT {`columns`*} FROM {`table`} WHERE Id = {ID}", .con = con)
   data <- DBI$dbGetQuery(con, query)
   DBI$dbDisconnect(con)
   return(data)
 }
 
-
-
-
-# tidyr::pivot_longer(test, tidyselect::everything())

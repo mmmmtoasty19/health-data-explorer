@@ -1,5 +1,8 @@
 box::use(
-  ,
+  dplyr[mutate, across, everything, pull],
+  tidyr[pivot_longer],
+  purrr[pmap],
+  shiny[div, tagList, strong, p, img],
 )
 
 box::use(
@@ -7,26 +10,31 @@ box::use(
 )
 
 # ID  <- "1c60a5da-1843-1978-d31a-ee5c060a43d2"
-# columns  <- list("BIRTHDATE", "FIRST", "MIDDLE", "LAST", "GENDER",  "RACE", "ETHNICITY")
-# table  <- "patients"
-
-# df  <- get_patient_data(columns, table, ID)
-
 
 #' @export
 pt_demo_table  <- function(df) {
   df |>
-    dplyr::mutate(dplyr::across(BIRTHDATE, as.character)) |>
-    tidyr::pivot_longer(tidyselect::everything()) |>
-    purrr::pmap(function(name, value) {
-      shiny::tagList(
-        shiny::fluidRow(
-          shiny::h3(name),
-          shiny::p(value)
-        ),
-        shiny::hr()
+    mutate(across(BIRTHDATE, as.character)) |>
+    pivot_longer(everything()) |>
+    pmap(function(name, value) {
+      tagList(
+        div(
+          class = "row justify-content-between pt-demo",
+          strong(name),
+          p(value)
+        )
       )
     })
-
 }
 
+#' @export
+get_pt_img  <- function(ID) {
+  pt_sex  <- get_patient_data("GENDER", "patients", ID) |>
+    pull()
+  if (pt_sex == "M") {
+    src  <- "https://cdn-icons-png.flaticon.com/512/1814/1814263.png"
+  } else {
+    src  <- "https://cdn-icons-png.flaticon.com/512/1814/1814235.png"
+  }
+  return(img(src = src, height = "125", width = "125", style = "border-radius: 50%"))
+}
