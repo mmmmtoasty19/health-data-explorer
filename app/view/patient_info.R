@@ -45,6 +45,3 @@ server <- function(id, patient_id) {
   })
 }
 
-
-# Female Placeholder https://cdn-icons-png.flaticon.com/512/1814/1814235.png
-# Male Placeholder https://cdn-icons-png.flaticon.com/512/1814/1814263.png

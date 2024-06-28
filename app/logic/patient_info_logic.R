@@ -17,6 +17,14 @@ pt_demo_table  <- function(df) {
     mutate(across(BIRTHDATE, as.character)) |>
     pivot_longer(everything()) |>
     pmap(function(name, value) {
+      name <- name
+      value <- value
+
+      if (name == "BIRTHDATE"){
+        value <- lubridate::as_date(as.numeric(value))
+      }
+
+
       tagList(
         div(
           class = "row justify-content-between pt-demo",

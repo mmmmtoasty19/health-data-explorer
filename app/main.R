@@ -30,7 +30,9 @@ ui <- function(id) {
         tabItem(
           tabName = "home",
           fluidRow(
-            box(patient_info$ui(ns("patient_info")))
+            box(
+              title = "Patient Demographics",
+              patient_info$ui(ns("patient_info")))
           )
         )
       )
