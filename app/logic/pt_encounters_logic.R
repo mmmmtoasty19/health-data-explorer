@@ -11,6 +11,7 @@ box::use(
 get_pt_encounter_data <- function(ID) {
   data <- get_data(
     columns = list(
+      DBI$Id("encounters", "Id"),
       DBI$Id("encounters", "START"),
       DBI$Id("encounters", "STOP"),
       DBI$Id("encounters", "DESCRIPTION"),
@@ -32,6 +33,9 @@ get_pt_encounter_data <- function(ID) {
 render_encounter_table <- function(df) {
   reactable::reactable(df, selection = "single", onClick = "select", columns = list(
     .selection = reactable::colDef(
+      show = FALSE
+    ),
+    Id = reactable::colDef(
       show = FALSE
     )
   ),
