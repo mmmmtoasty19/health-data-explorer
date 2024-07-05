@@ -32,6 +32,7 @@ get_patient_data  <- function(columns, table, ID) {
   return(data)
 }
 
+#' @export
 get_data  <- function(columns, table, ID, ID_col, joins = NULL) {
   con  <- DBI$dbConnect(
     RSQLite$SQLite(),
