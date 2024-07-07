@@ -2,11 +2,11 @@ name: CI
 on: [push]
 jobs:
   deploy:
-  name: "Deploy to Staging"
-  runs-on: ubuntu-latest
-  steps:
-    -name: Configure SSH
-    run: |
+    name: "Deploy to Staging"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+      run: |
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/staging.key
           chmod 600 ~/.ssh/staging.key
@@ -17,10 +17,10 @@ jobs:
             IdentityFile ~/.ssh/staging.key
             StrictHostKeyChecking no
           END
-        env:
-          SSH_USER: ${{ secrets.USERNAME }}
-          SSH_KEY: ${{ secrets.KEY }}
-          SSH_HOST: ${{ secrets.HOSTNAME }}
+      env:
+        SSH_USER: ${{ secrets.USERNAME }}
+        SSH_KEY: ${{ secrets.KEY }}
+        SSH_HOST: ${{ secrets.HOSTNAME }}
 
-    -name: Git Actions
-    -run: ssh staging 'cd /srv/shiny-server/health-data-explorer && git pull'
+      - name: Git Actions
+      run: ssh staging 'cd /srv/shiny-server/health-data-explorer && git pull'
