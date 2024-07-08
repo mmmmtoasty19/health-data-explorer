@@ -5,5 +5,9 @@ linters:
     box_separate_calls_linter = box.linters::box_separate_calls_linter(),
     box_trailing_commas_linter = box.linters::box_trailing_commas_linter(),
     box_universal_import_linter = box.linters::box_universal_import_linter(),
-    object_usage_linter = NULL  # Does not work with `box::use()`.
+    object_usage_linter = NULL,  # Does not work with `box::use()`.
+    indentation_linter(
+      hanging_indent_style = "never"
+    ),
+    commented_code_linter = NULL
   )

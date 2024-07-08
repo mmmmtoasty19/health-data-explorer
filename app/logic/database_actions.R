@@ -13,7 +13,7 @@ retrieve_data <- function(columns, table) {
     RSQLite$SQLite(),
     here("app", "synthea.sqlite")
   )
-  query <- glue_sql("SELECT {`columns`*} FROM {`table`}", columns = columns, .con = con )
+  query <- glue_sql("SELECT {`columns`*} FROM {`table`}", columns = columns, .con = con)
   data <- DBI$dbGetQuery(con, query)
   DBI$dbDisconnect(con)
   return(data)
@@ -21,19 +21,19 @@ retrieve_data <- function(columns, table) {
 
 
 #' @export
-get_patient_data  <- function(columns, table, ID) {
+get_patient_data  <- function(columns, table, id) {
   con  <- DBI$dbConnect(
     RSQLite$SQLite(),
     here("app", "synthea.sqlite")
   )
-  query <- glue_sql("SELECT {`columns`*} FROM {`table`} WHERE Id = {ID}", .con = con)
+  query <- glue_sql("SELECT {`columns`*} FROM {`table`} WHERE Id = {id}", .con = con)
   data <- DBI$dbGetQuery(con, query)
   DBI$dbDisconnect(con)
   return(data)
 }
 
 #' @export
-get_data  <- function(columns, table, ID, ID_col, joins = NULL) {
+get_data  <- function(columns, table, id, id_col, joins = NULL) {
   con  <- DBI$dbConnect(
     RSQLite$SQLite(),
     here("app", "synthea.sqlite")
@@ -41,9 +41,9 @@ get_data  <- function(columns, table, ID, ID_col, joins = NULL) {
   joins <- joins
   query <- glue_sql(
     "SELECT {`columns`*} FROM {`table`}",
-    if(!is.null(joins)) joins,
-    "WHERE {ID_col} = {ID}",
-     .con = con,
+    if (!is.null(joins)) joins,
+    "WHERE {id_col} = {id}",
+    .con = con,
     .sep = " ")
   data <- DBI$dbGetQuery(con, query)
   DBI$dbDisconnect(con)
@@ -64,7 +64,7 @@ get_data  <- function(columns, table, ID, ID_col, joins = NULL) {
 
 # table <- "encounters"
 
-# joins <- 
+# joins <-
 #   "JOIN `providers` ON `encounters`.`PROVIDER` = `providers`.`Id`
 #   JOIN `organizations` ON `encounters`.`ORGANIZATION` = `organizations`.`Id`"
 

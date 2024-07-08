@@ -16,8 +16,9 @@ box::use(
 ui <- function(id) {
   ns <- NS(id)
   shiny::tagList(
-  reactableOutput(ns("table")),
-  shiny::verbatimTextOutput(ns("selected")))
+    reactableOutput(ns("table")),
+    shiny::verbatimTextOutput(ns("selected"))
+  )
 }
 
 #' @export
@@ -28,7 +29,7 @@ server <- function(id, patient_id) {
       data <- get_pt_encounter_data(patient_id())
       return(data)
     }
-  )
+    )
 
     output$table <- renderReactable({
       # req(patient_id())
@@ -39,12 +40,10 @@ server <- function(id, patient_id) {
     selected <- shiny::reactive(reactable::getReactableState("table", "selected"))
 
     output$selected <- shiny::renderPrint({
-      df() |> 
-        dplyr::slice(selected()) |> 
-        dplyr::select(Id) |> 
+      df() |>
+        dplyr::slice(selected()) |>
+        dplyr::select(Id) |>
         dplyr::pull()
-      # print(selected())
     })
   })
 }
-

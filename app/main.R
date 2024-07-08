@@ -51,8 +51,8 @@ ui <- function(id) {
 #' @export
 server <- function(id) {
   moduleServer(id, function(input, output, session) {
-    patient_ID <- patient_select$server("patient_select")
-    patient_info$server("patient_info", patient_ID)
-    patient_encounters$server("pt_encounters", patient_ID)
+    patient_id <- patient_select$server("patient_select")
+    patient_info$server("patient_info", patient_id)
+    patient_encounters$server("pt_encounters", patient_id)
   })
 }

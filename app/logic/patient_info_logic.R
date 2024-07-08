@@ -20,7 +20,7 @@ pt_demo_table  <- function(df) {
       name <- name
       value <- value
 
-      if (name == "BIRTHDATE"){
+      if (name == "BIRTHDATE") {
         value <- lubridate::as_date(as.numeric(value))
       }
 
@@ -36,8 +36,8 @@ pt_demo_table  <- function(df) {
 }
 
 #' @export
-get_pt_img  <- function(ID) {
-  pt_sex  <- get_patient_data("GENDER", "patients", ID) |>
+get_pt_img  <- function(id) {
+  pt_sex  <- get_patient_data("GENDER", "patients", id) |>
     pull()
   if (pt_sex == "M") {
     src  <- "https://cdn-icons-png.flaticon.com/512/1814/1814263.png"
