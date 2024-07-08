@@ -27,6 +27,5 @@ jobs:
 
       - name: R Actions
         run: |
-          ssh staging 'cd /srv/shiny-server/health-data-explorer'
-          'R -e "renv::restore(prompt=FALSE)"' 
-          'R -e "renv::isolate()"' 
+          ssh staging 'cd /srv/shiny-server/health-data-explorer && R -e "renv::restore(prompt=FALSE)" && R -e "renv::isolate()"'
+          
