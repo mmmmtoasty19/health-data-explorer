@@ -24,4 +24,8 @@ jobs:
 
       - name: Git Actions
         run: ssh staging 'cd /srv/shiny-server/health-data-explorer && git pull'
-        
+
+      - name: R Actions
+        run: |
+          ssh staging 'R -e "renv::restore(prompt=FALSE)"' 
+          ssh staging 'R -e "renv::isolate()"' 
