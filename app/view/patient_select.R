@@ -4,6 +4,7 @@ box::use(
 
 box::use(
   app/logic/database_actions[retrieve_data],
+  app/logic/utilites[create_patient_list],
 )
 
 
@@ -20,9 +21,7 @@ ui <- function(id) {
 #' @export
 server <- function(id) {
   moduleServer(id, function(input, output, session) {
-    patient_list  <- retrieve_data(c("FIRST", "LAST", "Id"), "patients") |>
-      tidyr::unite(col = NAME, FIRST, LAST, sep = " ", remove = TRUE) |>
-      tibble::deframe()
+    patient_list  <- create_patient_list()
 
     updateSelectizeInput(
       session,
