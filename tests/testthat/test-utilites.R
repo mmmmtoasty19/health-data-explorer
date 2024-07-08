@@ -1,12 +1,12 @@
 box::use(
   testthat[expect_equal, test_that],
-  DBI, 
+  DBI,
   RSQLite,
   here[here],
 )
 
 box::use(
-  app/logic/utilites[create_patient_list]
+  app/logic/utilites[create_patient_list],
 )
 
 

@@ -1,10 +1,10 @@
 box::use(
   tidyr[unite],
-  tibble[deframe]
+  tibble[deframe],
 )
 
 box::use(
-  app/logic/database_actions[retrieve_data]
+  app/logic/database_actions[retrieve_data],
 )
 
 
@@ -15,4 +15,3 @@ create_patient_list <- function() {
     tibble::deframe()
   return(data)
 }
-
