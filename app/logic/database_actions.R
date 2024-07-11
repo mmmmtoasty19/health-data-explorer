@@ -6,6 +6,7 @@ box::use(
 )
 
 # should make function to open and close DB
+# TODO create function to open and close DB instead of retyping
 
 #' @export
 retrieve_data <- function(columns, table) {
@@ -50,8 +51,24 @@ get_data  <- function(columns, table, id, id_col, joins = NULL) {
   return(data)
 }
 
+#' @export
+get_labs <- function(id) {
+  con  <- DBI$dbConnect(
+    RSQLite$SQLite(),
+    here("app", "synthea.sqlite")
+  )
+  query <- glue_sql("SELECT * FROM `observations`",
+    "WHERE `PATIENT` = {id} ",
+    "AND `CATEGORY` = 'laboratory'",
+    .con = con
+  )
+  data <- DBI$dbGetQuery(con, query)
+  DBI$dbDisconnect(con)
+  return(data)
+}
+
 #TESTING
-# ID <-  "4fe88ea1-1627-47d7-8dec-9d11f43faf0a" #for testing
+# id <-  "4fe88ea1-1627-47d7-8dec-9d11f43faf0a" #for testing
 # columns <- list(
 #   DBI$Id("encounters", "START"),
 #   DBI$Id("encounters", "STOP"),

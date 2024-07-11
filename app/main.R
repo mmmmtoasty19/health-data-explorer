@@ -7,6 +7,8 @@ box::use(
   app/view/patient_info,
   app/view/patient_select,
   app/view/patient_encounters,
+  app/view/pt_observations,
+  app/view/pt_labs,
 )
 
 #' @export
@@ -39,6 +41,16 @@ ui <- function(id) {
               title = "Patient Encounters",
               patient_encounters$ui(ns("pt_encounters"))
             )
+          ),
+          fluidRow(
+            box(
+              title = "Observations",
+              pt_observations$ui(ns("pt_observations"))
+            ),
+            box(
+              title = "Patient Labs",
+              pt_labs$ui(ns("pt_labs"))
+            )
           )
         )
       )
@@ -53,6 +65,8 @@ server <- function(id) {
   moduleServer(id, function(input, output, session) {
     patient_id <- patient_select$server("patient_select")
     patient_info$server("patient_info", patient_id)
-    patient_encounters$server("pt_encounters", patient_id)
+    encounter_id <- patient_encounters$server("pt_encounters", patient_id)
+    pt_observations$server("pt_observations")
+    pt_labs$server("pt_labs", patient_id)
   })
 }

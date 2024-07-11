@@ -1,5 +1,5 @@
 box::use(
-  shiny[moduleServer, NS, req],
+  shiny[moduleServer, NS, req, reactive],
   reactable[renderReactable, reactableOutput, reactable],
   glue[glue_sql],
   DBI,
@@ -15,10 +15,7 @@ box::use(
 #' @export
 ui <- function(id) {
   ns <- NS(id)
-  shiny::tagList(
-    reactableOutput(ns("table")),
-    shiny::verbatimTextOutput(ns("selected"))
-  )
+  reactableOutput(ns("table"))
 }
 
 #' @export
@@ -39,7 +36,7 @@ server <- function(id, patient_id) {
 
     selected <- shiny::reactive(reactable::getReactableState("table", "selected"))
 
-    output$selected <- shiny::renderPrint({
+    reactive({
       df() |>
         dplyr::slice(selected()) |>
         dplyr::select(Id) |>

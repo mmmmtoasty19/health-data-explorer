@@ -40,6 +40,7 @@ render_encounter_table <- function(df) {
     )
   ),
   theme = reactable::reactableTheme(
+    # TODO update colors, move to stylesheet?
     rowSelectedStyle = list(backgroundColor = "#eee", boxShadow = "inset 2px 0 0 0 #ffa62d")
   ),
   defaultPageSize = 5
