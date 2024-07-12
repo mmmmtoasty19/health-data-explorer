@@ -2,6 +2,7 @@
 library(bs4Dash)
 library(DBI)
 library(dplyr)
+library(echarts4r)
 library(glue)
 library(here)
 library(jsonlite)

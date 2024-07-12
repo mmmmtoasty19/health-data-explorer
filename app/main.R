@@ -47,10 +47,7 @@ ui <- function(id) {
               title = "Observations",
               pt_observations$ui(ns("pt_observations"))
             ),
-            box(
-              title = "Patient Labs",
-              pt_labs$ui(ns("pt_labs"))
-            )
+            pt_labs$ui(ns("pt_labs"))
           )
         )
       )
