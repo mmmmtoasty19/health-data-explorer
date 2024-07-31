@@ -6,18 +6,26 @@ box::use(
 
 box::use(
   app/logic/database_actions[get_labs],
+  app/logic/utilites[create_dropdown_list],
   app/view/dropdown,
 )
 
 # TODO make select input its own reusable module
 # TODO call the dropdown module from within this module
+# TODO dropdown module not working, try placing input directly in this modele
 
 #' @export
 ui <- function(id) {
   ns <- NS(id)
   box(
     title = "Patient Labs",
-    dropdown$ui(ns("pt_lab_select"), label = "Select Labs", multiple = TRUE),
+    # shiny::selectizeInput(
+    #   inputId = ns("selectinput"),
+    #   choices = NULL,
+    #   multiple = TRUE,
+    #   label = "Select Labs"
+    # ),
+    dropdown$ui(ns("pt_labs_dropdown"), label = "Select Tests", multiple = TRUE),
     ec$echarts4rOutput(ns("chart"))
   )
 }
@@ -25,20 +33,19 @@ ui <- function(id) {
 #' @export
 server <- function(id, patient_id) {
   moduleServer(id, function(input, output, session) {
+    values <- shiny::reactiveValues(
+      test_list = NULL,
+      tests_selected = NULL
+    )
 
-    # TODO remove this logic into logic file
-    test_list <- shiny::reactive({
-      shiny::req(patient_id())
-      get_labs(patient_id()) |>
-        dplyr::distinct(DESCRIPTION) |>
-        dplyr::pull(DESCRIPTION)
+    shiny::observeEvent(patient_id(), {
+      values$test_list <- get_labs(patient_id()) |> 
+        create_dropdown_list("DESCRIPTION")
     })
 
-
-    tests_selected <- dropdown$server("pt_lab_select", choices = test_list())
+    tests_selected <- dropdown$server("pt_labs_dropdown", shiny::reactive(values$test_list))
 
     output$chart <- ec$renderEcharts4r({
-      shiny::req(tests_selected)
       get_labs(patient_id()) |>
         dplyr::mutate(dplyr::across(DATE, ~lubridate::as_date(lubridate::as_datetime(.)))) |>
         dplyr::filter(DESCRIPTION %in% tests_selected()) |>
@@ -51,8 +58,6 @@ server <- function(id, patient_id) {
 
   })
 }
-
-
 
 # TESTING
 # id <-  "4fe88ea1-1627-47d7-8dec-9d11f43faf0a"

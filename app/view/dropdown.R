@@ -2,6 +2,8 @@ box::use(
   shiny[moduleServer, NS, reactive],
 )
 
+# TODO This module not working the way I expect as a nested module.  
+# The observe/observe event is just not working as I would like. 
 
 #' @export
 ui <- function(id, label,  ...) {
@@ -15,16 +17,22 @@ ui <- function(id, label,  ...) {
 }
 
 #' @export
-server <- function(id, ...) {
+server <- function(id, choices, ...) {
   moduleServer(id, function(input, output, session) {
-    shiny::observe({
+    
+    shiny::observeEvent(choices(), {
       shiny::updateSelectizeInput(
         session,
         inputId = "selectinput",
+        choices = choices(),
         ...
       )
     })
 
-    reactive(input$selectinput)
+    return(reactive({
+      input$selectinput
+    }))
+
+
   })
 }

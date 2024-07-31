@@ -1,6 +1,7 @@
 # This file allows packrat (used by rsconnect during deployment) to pick up dependencies.
 library(bs4Dash)
 library(DBI)
+library(devtools)
 library(dplyr)
 library(echarts4r)
 library(glue)
